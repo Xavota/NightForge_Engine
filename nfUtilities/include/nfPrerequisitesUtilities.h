@@ -19,11 +19,11 @@
 namespace nfEngineSDK {
 class Vector2f;
 class Vector2i;
-class Point2D;
+class Vector2u;
 
 class Vector3f;
 class Vector3i;
-class Point3D;
+class Vector3u;
 
 class Vector4f;
 class Vector4i;

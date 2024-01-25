@@ -1,16 +1,93 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="deleteme.cpp" />
-    <ClCompile Include="src\nfPlatformMath.cpp" />
-    <ClCompile Include="src\nfPlatformMathIndependent.cpp" />
+    <ClCompile Include="src\nfMatrix2.cpp">
+      <Filter>Math\LinearAlgebra</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nfMatrix3.cpp">
+      <Filter>Math\LinearAlgebra</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nfMatrix4.cpp">
+      <Filter>Math\LinearAlgebra</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nfVector2.cpp">
+      <Filter>Math\LinearAlgebra</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nfVector3.cpp">
+      <Filter>Math\LinearAlgebra</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nfVector4.cpp">
+      <Filter>Math\LinearAlgebra</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nfPlatformMath.cpp">
+      <Filter>Math\Basics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\nfPlatformMathIndependent.cpp">
+      <Filter>Math\Basics</Filter>
+    </ClCompile>
+    <ClCompile Include="nfPlatformMathGeometry.cpp">
+      <Filter>Math\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="nfVector2Externals.cpp">
+      <Filter>Math\LinearAlgebra</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3Externals.cpp">
+      <Filter>Math\LinearAlgebra</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\nfMath.h" />
-    <ClInclude Include="include\nfPlatformDefines.h" />
-    <ClInclude Include="include\nfPlatformMath.h" />
-    <ClInclude Include="include\nfPlatformTypes.h" />
-    <ClInclude Include="include\nfPrerequisitesUtilities.h" />
-    <ClInclude Include="include\nfSTDHeaders.h" />
+    <ClInclude Include="include\nfMatrix2.h">
+      <Filter>Math\LinearAlgebra</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nfMatrix3.h">
+      <Filter>Math\LinearAlgebra</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nfMatrix4.h">
+      <Filter>Math\LinearAlgebra</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nfVector2.h">
+      <Filter>Math\LinearAlgebra</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nfVector3.h">
+      <Filter>Math\LinearAlgebra</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nfVector4.h">
+      <Filter>Math\LinearAlgebra</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nfPlatformDefines.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nfPlatformTypes.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nfPrerequisitesUtilities.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nfSTDHeaders.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nfPlatformMath.h">
+      <Filter>Math\Basics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\nfMath.h">
+      <Filter>Math\Basics</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{8ef7179c-98b0-4c38-b6f9-06ace708f449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{5f76d02d-4b33-4f17-b60e-1ddfe6c05a93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Geometry">
+      <UniqueIdentifier>{17ab6ee9-379b-43f7-ac29-4088a2dba913}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\LinearAlgebra">
+      <UniqueIdentifier>{9de40e6c-0c7c-49b4-b6ea-d2c27aecca21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math\Basics">
+      <UniqueIdentifier>{5a6b140a-43f7-40ef-8a18-67668e9e863a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

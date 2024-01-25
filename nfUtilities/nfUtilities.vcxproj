@@ -169,17 +169,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="deleteme.cpp" />
+    <ClCompile Include="nfPlatformMathGeometry.cpp" />
+    <ClCompile Include="nfVector2Externals.cpp" />
+    <ClCompile Include="src\nfMatrix2.cpp" />
+    <ClCompile Include="src\nfMatrix3.cpp" />
+    <ClCompile Include="src\nfMatrix4.cpp" />
     <ClCompile Include="src\nfPlatformMath.cpp" />
     <ClCompile Include="src\nfPlatformMathIndependent.cpp" />
+    <ClCompile Include="src\nfVector2.cpp" />
+    <ClCompile Include="src\nfVector3.cpp" />
+    <ClCompile Include="src\nfVector4.cpp" />
+    <ClCompile Include="Vector3Externals.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\nfMath.h" />
+    <ClInclude Include="include\nfMatrix2.h" />
+    <ClInclude Include="include\nfMatrix3.h" />
+    <ClInclude Include="include\nfMatrix4.h" />
     <ClInclude Include="include\nfPlatformDefines.h" />
     <ClInclude Include="include\nfPlatformMath.h" />
     <ClInclude Include="include\nfPlatformTypes.h" />
     <ClInclude Include="include\nfPrerequisitesUtilities.h" />
     <ClInclude Include="include\nfSTDHeaders.h" />
+    <ClInclude Include="include\nfVector2.h" />
+    <ClInclude Include="include\nfVector3.h" />
+    <ClInclude Include="include\nfVector4.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

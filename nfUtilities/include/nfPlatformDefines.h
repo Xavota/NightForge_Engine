@@ -37,9 +37,9 @@
 #define NF_ENDIAN NF_ENDIAN_LITTLE
 
 #define NF_VERSION_MAJOR    0                 //Engine version major
-#define NF_VERSION_MINIOR   1
+#define NF_VERSION_MINIOR   0
 #define NF_VERSION_PATCH    0
-#define NF_VERSION_BUILD    1
+#define NF_VERSION_BUILD    2
 
 //Define if on crate a we want to report warnings on unknown symbols
 #define NF_DEBUG_DETAILED_SYMBOLS   1
@@ -293,3 +293,8 @@
 # pragma warning(disable : 4503)
 
 #endif
+
+
+// Normal assert but with a message param, to help explain the reason of the
+// assertion
+#define assertm(exp, msg) assert(((void)msg, exp))

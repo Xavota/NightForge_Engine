@@ -118,10 +118,4 @@ using SStream = stringstream;
  */
 template<class FType>
 using Function = function<FType>;
-
-
-
-
-
-
 }
