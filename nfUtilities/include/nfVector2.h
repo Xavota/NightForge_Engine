@@ -17,11 +17,12 @@
 #include "nfPrerequisitesUtilities.h"
 
 namespace nfEngineSDK {
- /**
-  * @brief
-  * Two dimensional vector made by floats.
-  * It can be used as a point or as a direction.
-  */
+  /**
+   * @brief
+   * Two dimensional vector made by floats.
+   * It can be used as a point or as a direction.
+   * X as the right direction, Y as the up direction.
+   */
   class NF_UTILITIES_EXPORT Vector2f
   {
    public:
@@ -744,6 +745,7 @@ namespace nfEngineSDK {
    * @brief
    * Two dimensional vector made by int32.
    * It can be used as a point or as a direction.
+   * X as the right direction, Y as the up direction.
    */
   class NF_UTILITIES_EXPORT Vector2i
   {
@@ -1384,6 +1386,7 @@ namespace nfEngineSDK {
    * @brief
    * Two dimensional vector made by uint32.
    * It can be used as a point or as a direction.
+   * X as the right direction, Y as the up direction.
    */
   class NF_UTILITIES_EXPORT Vector2u
   {

@@ -29,10 +29,7 @@ namespace nfEngineSDK
   //     Vector3f     //
   //////////////////////
 
-  // TODO: Finish this
-  Vector3f::Vector3f(const Vector2f& _vec)
-  {
-  }
+  Vector3f::Vector3f(const Vector2f& _vec) : x(_vec.x), y(_vec.y), z(0.0f) {}
 
   float
   Vector3f::dot(const Vector3f& other) const
@@ -60,28 +57,44 @@ namespace nfEngineSDK
   {
     return Math::sqrt(this->x * this->x + this->y * this->y + this->z * this->z);
   }
-  // TODO: Finish this
   float
   Vector3f::getTheta() const
   {
-    return 0.0f;
+    return Math::atan2(z, x);
   }
   void
   Vector3f::setTheta(float theta)
   {
+    float rho = getMagnitude();
+    float phi = getPhi();
+
+    x = rho * Math::sin(phi) * Math::cos(theta);
+    z = rho * Math::sin(phi) * Math::sin(theta);
   }
   float
   Vector3f::getPhi() const
   {
-    return 0.0f;
+    return Math::acos(y / getMagnitude());
   }
   void
-  Vector3f::setPhi(float theta)
+  Vector3f::setPhi(float phi)
   {
+    float rho = getMagnitude();
+    float theta = getTheta();
+
+    x = rho * Math::sin(phi) * Math::cos(theta);
+    y = rho * Math::cos(phi);
+    z = rho * Math::sin(phi) * Math::sin(theta);
+  }
+
+  float
+  Vector3f::getRadiusCylinder() const
+  {
+    return Math::sqrt(x * x + z * z); 
   }
 
   Vector3f
-  Vector3f::getNormalize() const
+  Vector3f::getNormalized() const
   {
     return *this / this->getMagnitude();
   }
@@ -95,14 +108,14 @@ namespace nfEngineSDK
   Vector3f::getTruncate(float newSize) const
   {
     assertm(newSize >= 0.0f, "Size can't be negative for a Vector");
-    Vector3f n = this->getNormalize();
+    Vector3f n = this->getNormalized();
     return n * newSize;
   }
   Vector3f
   Vector3f::truncate(float newSize)
   {
     assertm(newSize >= 0.0f, "Size can't be negative for a Vector");
-    Vector3f n = this->getNormalize();
+    Vector3f n = this->getNormalized();
     *this = n * newSize;
     return *this;
   }
@@ -162,31 +175,32 @@ namespace nfEngineSDK
                     Math::fmod(this->z, other));
   }
 
-  // TODO: Finish this
-  NF_UTILITIES_EXPORT
-  Vector3f operator+(const float& other, const Vector3f& otherV)
+  NF_UTILITIES_EXPORT Vector3f
+  operator+(const float& other, const Vector3f& otherV)
   {
-    return Vector3f();
+    return Vector3f(other + otherV.x, other + otherV.y, other + otherV.z);
   }
-  NF_UTILITIES_EXPORT
-  Vector3f operator-(const float& other, const Vector3f& otherV)
+  NF_UTILITIES_EXPORT Vector3f
+  operator-(const float& other, const Vector3f& otherV)
   {
-    return Vector3f();
+    return Vector3f(other - otherV.x, other - otherV.y, other - otherV.z);
   }
-  NF_UTILITIES_EXPORT
-  Vector3f operator*(const float& other, const Vector3f& otherV)
+  NF_UTILITIES_EXPORT Vector3f
+  operator*(const float& other, const Vector3f& otherV)
   {
-    return Vector3f();
+    return Vector3f(other * otherV.x, other * otherV.y, other * otherV.z);
   }
-  NF_UTILITIES_EXPORT
-  Vector3f operator/(const float& other, const Vector3f& otherV)
+  NF_UTILITIES_EXPORT Vector3f
+  operator/(const float& other, const Vector3f& otherV)
   {
-    return Vector3f();
+    return Vector3f(other / otherV.x, other / otherV.y, other / otherV.z);
   }
-  NF_UTILITIES_EXPORT
-  Vector3f operator%(const float& other, const Vector3f& otherV)
+  NF_UTILITIES_EXPORT Vector3f
+  operator%(const float& other, const Vector3f& otherV)
   {
-    return Vector3f();
+    return Vector3f(Math::fmod(other, otherV.x),
+                    Math::fmod(other, otherV.y),
+                    Math::fmod(other, otherV.z));
   }
 
   Vector3f Vector3f::operator-() const
@@ -278,23 +292,25 @@ namespace nfEngineSDK
     return !(*this == other);
   }
 
-  // TODO: Finish this
   Vector3f::operator Vector3i() const
   {
+    return Vector3i(static_cast<int32>(x),
+                    static_cast<int32>(y),
+                    static_cast<int32>(z));
   }
 
   Vector3f::operator Vector3u() const
   {
+    return Vector3u(static_cast<uint32>(x),
+                    static_cast<uint32>(y),
+                    static_cast<uint32>(z));
   }
 
   //////////////////////
   //     Vector3i     //
   //////////////////////
 
-  // TODO: Finish this
-  Vector3i::Vector3i(const Vector2i& _vec)
-  {
-  }
+  Vector3i::Vector3i(const Vector2i& _vec) : x(_vec.x), y(_vec.y), z(0) {}
 
   int32
   Vector3i::dot(const Vector3i& other) const
@@ -378,31 +394,30 @@ namespace nfEngineSDK
     return Vector3i(this->x % other, this->y % other, this->z % other);
   }
 
-  // TODO: Finish this
   NF_UTILITIES_EXPORT Vector3i
-  operator+(const float& other, const Vector3i& otherV)
+  operator+(const int32& other, const Vector3i& otherV)
   {
-    return Vector3i();
+    return Vector3i(other + otherV.x, other + otherV.y, other + otherV.z);
   }
   NF_UTILITIES_EXPORT Vector3i
-  operator-(const float& other, const Vector3i& otherV)
+  operator-(const int32& other, const Vector3i& otherV)
   {
-    return Vector3i();
+    return Vector3i(other - otherV.x, other - otherV.y, other - otherV.z);
   }
   NF_UTILITIES_EXPORT Vector3i
-  operator*(const float& other, const Vector3i& otherV)
+  operator*(const int32& other, const Vector3i& otherV)
   {
-    return Vector3i();
+    return Vector3i(other * otherV.x, other * otherV.y, other * otherV.z);
   }
   NF_UTILITIES_EXPORT Vector3i
-  operator/(const float& other, const Vector3i& otherV)
+  operator/(const int32& other, const Vector3i& otherV)
   {
-    return Vector3i();
+    return Vector3i(other / otherV.x, other / otherV.y, other / otherV.z);
   }
   NF_UTILITIES_EXPORT Vector3i
-  operator%(const float& other, const Vector3i& otherV)
+  operator%(const int32& other, const Vector3i& otherV)
   {
-    return Vector3i();
+    return Vector3i(other % otherV.x, other % otherV.y, other % otherV.z);
   }
 
   Vector3i Vector3i::operator-() const
@@ -492,25 +507,26 @@ namespace nfEngineSDK
     return !(*this == other);
   }
 
-  // TODO: Finish this
   Vector3i::operator Vector3f() const
   {
+    return Vector3f(static_cast<float>(x),
+                    static_cast<float>(y),
+                    static_cast<float>(z));
   }
 
   Vector3i::operator Vector3u() const
   {
+    return Vector3u(static_cast<uint32>(x),
+                    static_cast<uint32>(y),
+                    static_cast<uint32>(z));
   }
 
   //////////////////////
   //     Vector3u     //
   //////////////////////
 
-  // TODO: Finish this
-  Vector3u::Vector3u(const Vector2u& _vec)
-  {
-  }
+  Vector3u::Vector3u(const Vector2u& _vec) : x(_vec.x), y(_vec.y), z(0u) {}
 
-  // TODO: Finish this
   uint32
   Vector3u::dot(const Vector3u& other) const
   {
@@ -593,31 +609,30 @@ namespace nfEngineSDK
     return Vector3u(this->x % other, this->y % other, this->z % other);
   }
 
-  // TODO: Finish this
   NF_UTILITIES_EXPORT Vector3u
-  operator+(const float& other, const Vector3u& otherV)
+  operator+(const uint32& other, const Vector3u& otherV)
   {
-    return Vector3u();
+    return Vector3u(other + otherV.x, other + otherV.y, other + otherV.z);
   }
   NF_UTILITIES_EXPORT Vector3u
-  operator-(const float& other, const Vector3u& otherV)
+  operator-(const uint32& other, const Vector3u& otherV)
   {
-    return Vector3u();
+    return Vector3u(other - otherV.x, other - otherV.y, other - otherV.z);
   }
   NF_UTILITIES_EXPORT Vector3u
-  operator*(const float& other, const Vector3u& otherV)
+  operator*(const uint32& other, const Vector3u& otherV)
   {
-    return Vector3u();
+    return Vector3u(other * otherV.x, other * otherV.y, other * otherV.z);
   }
   NF_UTILITIES_EXPORT Vector3u
-  operator/(const float& other, const Vector3u& otherV)
+  operator/(const uint32& other, const Vector3u& otherV)
   {
-    return Vector3u();
+    return Vector3u(other / otherV.x, other / otherV.y, other / otherV.z);
   }
   NF_UTILITIES_EXPORT Vector3u
-  operator%(const float& other, const Vector3u& otherV)
+  operator%(const uint32& other, const Vector3u& otherV)
   {
-    return Vector3u();
+    return Vector3u(other % otherV.x, other % otherV.y, other % otherV.z);
   }
 
   Vector3u&
@@ -702,11 +717,16 @@ namespace nfEngineSDK
     return !(*this == other);
   }
 
-  // TODO: Finish this
   Vector3u::operator Vector3f() const
   {
+    return Vector3f(static_cast<float>(x),
+                    static_cast<float>(y),
+                    static_cast<float>(z));
   }
   Vector3u::operator Vector3i() const
   {
+    return Vector3i(static_cast<int32>(x),
+                    static_cast<int32>(y),
+                    static_cast<int32>(z));
   }
 }

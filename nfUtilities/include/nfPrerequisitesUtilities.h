@@ -27,7 +27,7 @@ class Vector3u;
 
 class Vector4f;
 class Vector4i;
-class Point4D;
+class Vector4u;
 
 class Color;
 class ColorI;

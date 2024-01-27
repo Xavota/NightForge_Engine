@@ -21,6 +21,7 @@ namespace nfEngineSDK {
    * @brief
    * Three dimensional vector made by floats.
    * It can be used as a point or as a direction.
+   * X as the right direction, Y as the up direction, Z as the front direction.
    */
   class NF_UTILITIES_EXPORT Vector3f
   {
@@ -126,7 +127,9 @@ namespace nfEngineSDK {
      * The length of the vector.
      *
      * @description
-     * Returns the size of the vector in the space.
+     * Returns the size of the vector in the space. This is also the radius of
+     * the sphere, in spherical coordinates. It's usually called with the greek
+     * letter rho.
      *
      * @return
      * The length of the vector.
@@ -184,6 +187,20 @@ namespace nfEngineSDK {
     setPhi(float theta);
     /**
      * @brief
+     * The radius of the cylinder, for cylindrical coordinates.
+     *
+     * @description
+     * Returns the radius of the cylinder, for a cylindrical coordinates
+     * system. Usually called just 'r', since spherical radius is called rho. 
+     *
+     * @return
+     * The length of the vector.
+     */
+    float
+    getRadiusCylinder() const;
+    
+    /**
+     * @brief
      * The normalization of the vector.
      *
      * @description
@@ -194,7 +211,7 @@ namespace nfEngineSDK {
      * The vector normalized.
      */
     Vector3f
-    getNormalize() const;
+    getNormalized() const;
     /**
      * @brief
      * Normalizes the vector.
@@ -795,6 +812,7 @@ namespace nfEngineSDK {
    * @brief
    * Three dimensional vector made by int32.
    * It can be used as a point or as a direction.
+   * X as the right direction, Y as the up direction, Z as the front direction.
    */
   class NF_UTILITIES_EXPORT Vector3i
   {
@@ -1079,7 +1097,7 @@ namespace nfEngineSDK {
      * The sum of the vector plus the number.
      */
     friend NF_UTILITIES_EXPORT Vector3i
-    operator+(const float& other, const Vector3i& otherV);
+    operator+(const int32& other, const Vector3i& otherV);
     /**
      * @brief 
      * The subtraction of the vector minus a number.
@@ -1095,7 +1113,7 @@ namespace nfEngineSDK {
      * The subtraction of the vector minus the number.
      */
     friend NF_UTILITIES_EXPORT Vector3i
-    operator-(const float& other, const Vector3i& otherV);
+    operator-(const int32& other, const Vector3i& otherV);
     /**
      * @brief
      * The multiplication of the vector times a number.
@@ -1111,7 +1129,7 @@ namespace nfEngineSDK {
      * The multiplication of the vector times the number.
      */
     friend NF_UTILITIES_EXPORT Vector3i
-    operator*(const float& other, const Vector3i& otherV);
+    operator*(const int32& other, const Vector3i& otherV);
     /**
      * @brief
      * The quotient of the vector divided by a number.
@@ -1127,7 +1145,7 @@ namespace nfEngineSDK {
      * The quotient of the vector divided by the number.
      */
     friend NF_UTILITIES_EXPORT Vector3i
-    operator/(const float& other, const Vector3i& otherV);
+    operator/(const int32& other, const Vector3i& otherV);
     /**
      * @brief
      * The residue of the vector divided by a number.
@@ -1143,7 +1161,7 @@ namespace nfEngineSDK {
      * The residue of the vector divided by the number.
      */
     friend NF_UTILITIES_EXPORT Vector3i
-    operator%(const float& other, const Vector3i& otherV);
+    operator%(const int32& other, const Vector3i& otherV);
   
     /**
      * @brief
@@ -1459,6 +1477,7 @@ namespace nfEngineSDK {
    * @brief
    * Three dimensional vector made by uint32.
    * It can be used as a point or as a direction.
+   * X as the right direction, Y as the up direction, Z as the front direction.
    */
   class NF_UTILITIES_EXPORT Vector3u
   {
@@ -1743,7 +1762,7 @@ namespace nfEngineSDK {
      * The sum of the vector plus the number.
      */
     friend NF_UTILITIES_EXPORT Vector3u
-    operator+(const float& other, const Vector3u& otherV);
+    operator+(const uint32& other, const Vector3u& otherV);
     /**
      * @brief 
      * The subtraction of the vector minus a number.
@@ -1759,7 +1778,7 @@ namespace nfEngineSDK {
      * The subtraction of the vector minus the number.
      */
     friend NF_UTILITIES_EXPORT Vector3u
-    operator-(const float& other, const Vector3u& otherV);
+    operator-(const uint32& other, const Vector3u& otherV);
     /**
      * @brief
      * The multiplication of the vector times a number.
@@ -1775,7 +1794,7 @@ namespace nfEngineSDK {
      * The multiplication of the vector times the number.
      */
     friend NF_UTILITIES_EXPORT Vector3u
-    operator*(const float& other, const Vector3u& otherV);
+    operator*(const uint32& other, const Vector3u& otherV);
     /**
      * @brief
      * The quotient of the vector divided by a number.
@@ -1791,7 +1810,7 @@ namespace nfEngineSDK {
      * The quotient of the vector divided by the number.
      */
     friend NF_UTILITIES_EXPORT Vector3u
-    operator/(const float& other, const Vector3u& otherV);
+    operator/(const uint32& other, const Vector3u& otherV);
     /**
      * @brief
      * The residue of the vector divided by a number.
@@ -1807,7 +1826,7 @@ namespace nfEngineSDK {
      * The residue of the vector divided by the number.
      */
     friend NF_UTILITIES_EXPORT Vector3u
-    operator%(const float& other, const Vector3u& otherV);
+    operator%(const uint32& other, const Vector3u& otherV);
   
     /**
      * @brief

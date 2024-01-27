@@ -312,13 +312,14 @@ namespace nfEngineSDK {
      * The arctangent2 function.
      *
      * @description
-     * Returns the arctangent operation for the values passed,
-     * using the signs of arguments to correctly determine quadrant.
+     * Returns the arctangent operation for the values passed, using the signs
+     * of arguments to correctly determine quadrant. The value is assumed as 
+     * Y / X
      *
      * @param Y
-     * The vY component of the right triangle.
+     * The y component of the right triangle.
      * @param X
-     * The vY component of the right triangle.
+     * The x component of the right triangle.
      *
      * @return
      * The result of the arctangent2 function.
@@ -532,6 +533,54 @@ namespace nfEngineSDK {
     pow(T _base, T _power);
     /**
      * @brief
+     * The logarithmic operation base 2.
+     *
+     * @description
+     * Returns the logarithm of a number with a base of 2.
+     *
+     * @param _value
+     * The number to be log.
+     *
+     * @return
+     * The result of the logarithmic operation.
+     */
+    template<typename T>
+    static FORCEINLINE T
+    log2(T _value);
+    /**
+     * @brief
+     * The logarithmic operation base 10.
+     *
+     * @description
+     * Returns the logarithm of a number with a base of 10.
+     *
+     * @param _value
+     * The number to be log.
+     *
+     * @return
+     * The result of the logarithmic operation.
+     */
+    template<typename T>
+    static FORCEINLINE T
+    log10(T _value);
+    /**
+     * @brief
+     * The natural logarithmic operation.
+     *
+     * @description
+     * Returns the logarithm of a number with a base of e.
+     *
+     * @param _value
+     * The number to be log.
+     *
+     * @return
+     * The result of the logarithmic operation.
+     */
+    template<typename T>
+    static FORCEINLINE T
+    log(T _value);
+    /**
+     * @brief
      * The logarithmic operation.
      *
      * @description
@@ -543,11 +592,28 @@ namespace nfEngineSDK {
      * The base of the log.
      *
      * @return
-     * The result of the logarthmic operation.
+     * The result of the logarithmic operation.
      */
     template<typename T>
     static FORCEINLINE T
-    log(T _value, T _base = kEuler);
+    log(T _value, T _base = kEULER);
+    /**
+     * @brief
+     * The exponential function.
+     *
+     * @description
+     * Calculates the exponential value of a floating-point argument x, with
+     * the formula e^x (e = kEULER).
+     *
+     * @param _value
+     * The number to be exponentiated.
+     *
+     * @return
+     * The result of the exponential.
+     */
+    template<typename T>
+    static FORCEINLINE T
+    exp(T _value);
   
     /**
      * @brief
@@ -1214,7 +1280,7 @@ namespace nfEngineSDK {
      * @brief
      * The value of e.
      */
-    static const float kEuler;
+    static const float kEULER;
   
     /**
      * @brief
@@ -1448,10 +1514,34 @@ namespace nfEngineSDK {
     return std::pow(_base, _power);
   }
   template<typename T>
+  FORCEINLINE T
+  PlatformMath::log2(T _value)
+  {
+    return std::log2(_value);
+  }
+  template<typename T>
+  FORCEINLINE T
+  PlatformMath::log10(T _value)
+  {
+    return std::log10(_value);
+  }
+  template<typename T>
+  FORCEINLINE T
+  PlatformMath::log(T _value)
+  {
+    return std::log(_value);
+  }
+  template<typename T>
   FORCEINLINE T 
   PlatformMath::log(T _value, T _base)
   {
     return std::log(_value) / std::log(_base);
+  }
+  template<typename T>
+  FORCEINLINE T
+  PlatformMath::exp(T _value)
+  {
+    return T();
   }
   
   template<typename T>

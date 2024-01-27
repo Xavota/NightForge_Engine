@@ -38,8 +38,8 @@
 
 #define NF_VERSION_MAJOR    0                 //Engine version major
 #define NF_VERSION_MINIOR   0
-#define NF_VERSION_PATCH    0
-#define NF_VERSION_BUILD    2
+#define NF_VERSION_PATCH    1
+#define NF_VERSION_BUILD    3
 
 //Define if on crate a we want to report warnings on unknown symbols
 #define NF_DEBUG_DETAILED_SYMBOLS   1

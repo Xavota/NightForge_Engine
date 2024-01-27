@@ -8,7 +8,7 @@ namespace nfEngineSDK
   const float PlatformMath::k2_PI = PlatformMath::kPI * 2.0f;
   const float PlatformMath::kPI_OVER_2 = PlatformMath::kPI / 2.0f;
 
-  const float PlatformMath::kEuler = std::expf(1);
+  const float PlatformMath::kEULER = std::expf(1);
 
   const float PlatformMath::kMAX_FLOAT = std::numeric_limits<float>::max();
   const float PlatformMath::kMIN_FLOAT = std::numeric_limits<float>::min();
