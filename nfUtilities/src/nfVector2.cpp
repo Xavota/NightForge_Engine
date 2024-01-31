@@ -252,7 +252,8 @@ namespace nfEngineSDK
     return Vector2i(static_cast<int32>(x), static_cast<int32>(y));
   }
   Vector2f::operator Vector2u() const {
-    return Vector2u(static_cast<uint32>(x), static_cast<uint32>(y));
+    return Vector2u(static_cast<uint32>(Math::abs(x)),
+                    static_cast<uint32>(Math::abs(y)));
   }
   
   //////////////////////

@@ -22,6 +22,38 @@
 namespace nfEngineSDK {
   namespace stringUtils {
     using std::to_string;
+
+    /// TODO: COMMENT THIS FUNCTION
+    FORCEINLINE String
+    replicateString(String origin, int count)
+    {
+      String r;
+      for (int i = 0; i < count; ++i) {
+        r += origin;
+      }
+      return origin;
+    }
+
+    /// TODO: COMMENT THIS FUNCTION
+    FORCEINLINE Vector<String>
+    splitString(const String& str, const String& delimiter)
+    {
+      String s = str;
+
+      Vector<String> r = {};
+
+      size_t pos = 0;
+      String token;
+      while ((pos = s.find(delimiter)) != String::npos)
+      {
+        token = s.substr(0, pos);
+        r.push_back(token);
+        s.erase(0, pos + delimiter.length());
+      }
+      r.push_back(s);
+
+      return r;
+    }
     
     /**
      * @brief
@@ -39,9 +71,32 @@ namespace nfEngineSDK {
      */
     template<typename T>
     FORCEINLINE String
-    toString(const T _value)
+    toString(const T& _value, int decimals = -1)
     {
-      return to_string(_value);
+      auto r = to_string(_value);
+
+      if (decimals < 0) return r;
+
+      auto spl = splitString(r, ".");
+
+      if (decimals == 0) return spl[0];
+
+      if (spl.size() == 1) return spl[0] + "." + replicateString("0", decimals);
+
+      r = spl[0] + ".";
+
+      String decims = spl[1];
+      auto decimsCount = static_cast<int>(decims.size());
+      for (int i = 0; i < decimals; ++i) {
+        if (i < decimsCount) {
+          r += decims[i];
+        }
+        else {
+          r += "0";
+        }
+      }
+
+      return r;
     }
     
     

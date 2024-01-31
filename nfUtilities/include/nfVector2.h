@@ -694,12 +694,15 @@ namespace nfEngineSDK {
      *
      * @description
      * Return a string with the format "{ x, y }".
+     * 
+     * @param decimals
+     * The amount of decimals for the numbers in the resulting string
      *
      * @return
      * The string vector.
      */
     String
-    toString() const;
+    toString(int decimals = -1) const;
   
    public:
     /**

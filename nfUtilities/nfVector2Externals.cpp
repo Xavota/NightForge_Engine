@@ -4,10 +4,10 @@
 namespace nfEngineSDK
 {
   String
-  Vector2f::toString() const
+  Vector2f::toString(int decimals) const
   {
-    return "{ " + stringUtils::toString(x) + ", "
-                + stringUtils::toString(y) + " }";
+    return "{ " + stringUtils::toString(x, decimals) + ", "
+                + stringUtils::toString(y, decimals) + " }";
   }
 
   String

@@ -515,6 +515,22 @@ namespace nfEngineSDK {
     sqrt(T _val);
     /**
      * @brief
+     * The square operation.
+     *
+     * @description
+     * Returns the number squared, that means the number times itself.
+     *
+     * @param _val
+     * The value for the square operation.
+     *
+     * @return
+     * The result of the square operation.
+     */
+    template<typename T>
+    static FORCEINLINE T
+    sqr(T _val);
+    /**
+     * @brief
      * The power operation.
      *
      * @description
@@ -565,22 +581,6 @@ namespace nfEngineSDK {
     log10(T _value);
     /**
      * @brief
-     * The natural logarithmic operation.
-     *
-     * @description
-     * Returns the logarithm of a number with a base of e.
-     *
-     * @param _value
-     * The number to be log.
-     *
-     * @return
-     * The result of the logarithmic operation.
-     */
-    template<typename T>
-    static FORCEINLINE T
-    log(T _value);
-    /**
-     * @brief
      * The logarithmic operation.
      *
      * @description
@@ -614,6 +614,23 @@ namespace nfEngineSDK {
     template<typename T>
     static FORCEINLINE T
     exp(T _value);
+    /**
+     * @brief
+     * The exponential function base 2.
+     *
+     * @description
+     * Calculates the exponential value of a floating-point argument x, with
+     * the formula 2^x.
+     *
+     * @param _value
+     * The number to be exponentiated.
+     *
+     * @return
+     * The result of the exponential.
+     */
+    template<typename T>
+    static FORCEINLINE T
+    exp2(T _value);
   
     /**
      * @brief
@@ -755,6 +772,52 @@ namespace nfEngineSDK {
     template<typename T>
     static FORCEINLINE T
     min(const T& _val1, const T& _val2);
+    /**
+     * @brief
+     * The absolute maximum value.
+     *
+     * @description
+     * Returns the maximum value between the first and the second value, using
+     * their absolute values. The value it returns maintains the sign of the
+     * original.
+     * e.g.
+     * maxabs(-2.0, 3.0) == 3.0
+     * maxabs(-4.0, 3.0) == -4.0
+     *
+     * @param _val1
+     * The first number to check.
+     * @param _val2
+     * The second number to check.
+     *
+     * @return
+     * The absolute maximum value between the first and the second value.
+     */
+    template<typename T>
+    static FORCEINLINE T
+    maxabs(const T& _val1, const T& _val2);
+    /**
+     * @brief
+     * The absolute minimum value.
+     *
+     * @description
+     * Returns the minimum value between the first and the second value, using
+     * their absolute values. The value it returns maintains the sign of the
+     * original.
+     * e.g.
+     * minabs(-2.0, 3.0) == -2.0
+     * minabs(-4.0, 3.0) == 3.0.
+     *
+     * @param _val1
+     * The first number to check.
+     * @param _val2
+     * The second number to check.
+     *
+     * @return
+     * The minimum value between the first and the second value.
+     */
+    template<typename T>
+    static FORCEINLINE T
+    minabs(const T& _val1, const T& _val2);
 
     /**
      * @brief
@@ -805,7 +868,7 @@ namespace nfEngineSDK {
     static FORCEINLINE bool
     checkEqual(double _val1,
                double _val2,
-               double maxRelativeDiff = DBL_EPSILON * 5.0f);
+               double maxRelativeDiff = DBL_EPSILON * 250000000.0);
     /**
      * @brief
      * Check if two long double are nearly equal.
@@ -830,7 +893,8 @@ namespace nfEngineSDK {
     static FORCEINLINE bool
     checkEqual(long double _val1,
                long double _val2,
-               long double maxRelativeDiff = LDBL_EPSILON * 5.0f);
+               long double maxRelativeDiff =
+                         static_cast<long double>(LDBL_EPSILON * 250000000.0L));
     /**
      * @brief
      * Check if the value has the flag.
@@ -1413,7 +1477,7 @@ namespace nfEngineSDK {
   FORCEINLINE T
   PlatformMath::acosd(const T& _value)
   {
-    return degToRad(std::acos(_value));
+    return radToDeg(std::acos(_value));
   }
   template<typename T>
   FORCEINLINE T 
@@ -1425,7 +1489,7 @@ namespace nfEngineSDK {
   FORCEINLINE T
   PlatformMath::asind(const T& _value)
   {
-    return degToRad(std::asin(_value));
+    return radToDeg(std::asin(_value));
   }
   template<typename T>
   FORCEINLINE T 
@@ -1443,7 +1507,7 @@ namespace nfEngineSDK {
   FORCEINLINE T
   PlatformMath::atand(const T& _value)
   {
-    return degToRad(std::atan(_value));
+    return radToDeg(std::atan(_value));
   }
   template<typename T>
   FORCEINLINE T 
@@ -1455,7 +1519,7 @@ namespace nfEngineSDK {
   FORCEINLINE T
   PlatformMath::asecd(const T& _value)
   {
-    return degToRad(acos(1 / _value));
+    return radToDeg(acos(1 / _value));
   }
   template<typename T>
   FORCEINLINE T 
@@ -1467,7 +1531,7 @@ namespace nfEngineSDK {
   FORCEINLINE T
   PlatformMath::acscd(const T& _value)
   {
-    return degToRad(asin(1 / _value));
+    return radToDeg(asin(1 / _value));
   }
   template<typename T>
   FORCEINLINE T 
@@ -1479,7 +1543,7 @@ namespace nfEngineSDK {
   FORCEINLINE T
   PlatformMath::acotd(const T& _value)
   {
-    return degToRad(atan(1 / _value));
+    return radToDeg(atan(1 / _value));
   }
   
   template<typename T>
@@ -1509,6 +1573,12 @@ namespace nfEngineSDK {
   }
   template<typename T>
   FORCEINLINE T 
+  PlatformMath::sqr(T _val)
+  {
+    return _val * _val;
+  }
+  template<typename T>
+  FORCEINLINE T 
   PlatformMath::pow(T _base, T _power)
   {
     return std::pow(_base, _power);
@@ -1526,12 +1596,6 @@ namespace nfEngineSDK {
     return std::log10(_value);
   }
   template<typename T>
-  FORCEINLINE T
-  PlatformMath::log(T _value)
-  {
-    return std::log(_value);
-  }
-  template<typename T>
   FORCEINLINE T 
   PlatformMath::log(T _value, T _base)
   {
@@ -1541,7 +1605,13 @@ namespace nfEngineSDK {
   FORCEINLINE T
   PlatformMath::exp(T _value)
   {
-    return T();
+    return std::exp(_value);
+  }
+  template<typename T>
+  FORCEINLINE T
+  PlatformMath::exp2(T _value)
+  {
+    return std::exp2(_value);
   }
   
   template<typename T>
@@ -1593,6 +1663,18 @@ namespace nfEngineSDK {
   PlatformMath::min(const T& _val1, const T& _val2)
   {
     return _val1 < _val2 ? _val1 : _val2;
+  }
+  template<typename T>
+  FORCEINLINE T
+  PlatformMath::maxabs(const T& _val1, const T& _val2)
+  {
+    return abs(_val1) > abs(_val2) ? _val1 : _val2;
+  }
+  template<typename T>
+  FORCEINLINE T
+  PlatformMath::minabs(const T& _val1, const T& _val2)
+  {
+    return abs(_val1) < abs(_val2) ? _val1 : _val2;
   }
   
   FORCEINLINE bool
