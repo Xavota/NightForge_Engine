@@ -1419,8 +1419,7 @@ namespace nfEngineSDK {
      * Frees the memory allocated on the vector.
      *
      * @description 
-     * Releases and deletes all the possible memory
-     * allocated in the vector.
+     * Releases and deletes all the possible memory allocated in the vector.
      */
     ~Vector2u() = default;
   
@@ -1429,8 +1428,8 @@ namespace nfEngineSDK {
      * The dot product of two vectors.
      *
      * @description
-     * Returns the result of the dot product between the
-     * current vector and the one pass to the function.
+     * Returns the result of the dot product between the current vector and the
+     * one pass to the function.
      * `x0 * y0 + y1 + x1`
      *
      * @param other
@@ -1446,8 +1445,8 @@ namespace nfEngineSDK {
      * The cross product of two vectors.
      *
      * @description
-     * Returns the result of the cross product between the
-     * current vector and the one pass to the function.
+     * Returns the result of the cross product between the current vector and
+     * the one pass to the function.
      * `x0 * y1 - y0 + x1`
      *
      * @param other
@@ -1456,7 +1455,7 @@ namespace nfEngineSDK {
      * @return
      * The result of the dot product of the two vectors.
      */
-    uint32
+    int32
     cross(const Vector2u& other) const;
   
     /**
@@ -1486,7 +1485,7 @@ namespace nfEngineSDK {
      * The length of the vector.
      */
     float
-    getMagnitud() const;
+    getMagnitude() const;
   
     /**
      * @brief

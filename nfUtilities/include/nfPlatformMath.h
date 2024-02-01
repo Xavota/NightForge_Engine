@@ -705,7 +705,8 @@ namespace nfEngineSDK {
      * The sign of a value.
      *
      * @description
-     * Returns the sign of the number passed as a 1.0f or -1.0f.
+     * Returns the sign of the number passed as a 1 or -1.
+     * It will return 1 if _val is 0.
      *
      * @param _val
      * The number to know its sing.
@@ -1563,7 +1564,8 @@ namespace nfEngineSDK {
   FORCEINLINE T 
   PlatformMath::fmod(const T& _lval, const T& _rval)
   {
-    return _lval - floor(_lval / _rval) * _rval;
+    T div = _lval / _rval;
+    return _lval - floor(abs(div)) * sign(div) * _rval;
   }
   template<typename T>
   FORCEINLINE T 
@@ -1643,6 +1645,7 @@ namespace nfEngineSDK {
   FORCEINLINE T
   PlatformMath::sign(T _val)
   {
+    if (_val == 0) return T{1};
     return abs(_val) / _val;
   }
   template<typename T>

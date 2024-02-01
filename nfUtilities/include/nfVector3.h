@@ -753,11 +753,14 @@ namespace nfEngineSDK {
      * @description
      * Return a string with the format "{ x, y, z }".
      *
+     * @param decimals
+     * The amount of decimals for the numbers in the resulting string
+     *
      * @return
      * The string vector.
      */
     String
-    toString() const;
+    toString(int decimals = -1) const;
   
   
    public:
@@ -922,7 +925,7 @@ namespace nfEngineSDK {
      * The length of the vector.
      */
     float
-    getMagnitud() const;
+    getMagnitude() const;
   
     /**
      * @brief
@@ -1557,7 +1560,7 @@ namespace nfEngineSDK {
      * @return
      * The result of the cross product of the two vectors.
      */
-    Vector3u
+    Vector3i
     cross(const Vector3u& other) const;
   
     /**
@@ -1587,7 +1590,7 @@ namespace nfEngineSDK {
      * The length of the vector.
      */
     float
-    getMagnitud() const;
+    getMagnitude() const;
   
     /**
      * @brief

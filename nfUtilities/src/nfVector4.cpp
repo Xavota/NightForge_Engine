@@ -245,6 +245,21 @@ namespace nfEngineSDK
     return !(*this == other);
   }
 
+  Vector4f::operator Vector4i() const
+  {
+    return Vector4i(static_cast<int32>(x),
+                    static_cast<int32>(y),
+                    static_cast<int32>(z),
+                    static_cast<int32>(w));
+  }
+  Vector4f::operator Vector4u() const
+  {
+    return Vector4u(static_cast<uint32>(Math::abs(x)),
+                    static_cast<uint32>(Math::abs(y)),
+                    static_cast<uint32>(Math::abs(z)),
+                    static_cast<uint32>(Math::abs(w)));
+  }
+
   //////////////////////
   //     Vector4i     //
   //////////////////////
@@ -457,6 +472,22 @@ namespace nfEngineSDK
     return !(*this == other);
   }
 
+  Vector4i::operator Vector4f() const
+  {
+    return Vector4f(static_cast<float>(x),
+                    static_cast<float>(y),
+                    static_cast<float>(z),
+                    static_cast<float>(w));
+  }
+
+  Vector4i::operator Vector4u() const
+  {
+    return Vector4u(static_cast<uint32>(Math::abs(x)),
+                    static_cast<uint32>(Math::abs(y)),
+                    static_cast<uint32>(Math::abs(z)),
+                    static_cast<uint32>(Math::abs(w)));
+  }
+
   //////////////////////
   //     Vector4u     //
   //////////////////////
@@ -662,5 +693,19 @@ namespace nfEngineSDK
   Vector4u::operator!=(const Vector4u& other) const
   {
     return !(*this == other);
+  }
+  Vector4u::operator Vector4f() const
+  {
+    return Vector4f(static_cast<float>(x),
+                    static_cast<float>(y),
+                    static_cast<float>(z),
+                    static_cast<float>(w));
+  }
+  Vector4u::operator Vector4i() const
+  {
+    return Vector4i(static_cast<int32>(x),
+                    static_cast<int32>(y),
+                    static_cast<int32>(z),
+                    static_cast<int32>(w));
   }
 }

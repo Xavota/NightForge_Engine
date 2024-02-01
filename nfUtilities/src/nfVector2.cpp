@@ -454,7 +454,8 @@ namespace nfEngineSDK
     return Vector2f(static_cast<float>(x), static_cast<float>(y));
   }
   Vector2i::operator Vector2u() const {
-    return Vector2u(static_cast<uint32>(x), static_cast<uint32>(y));
+    return Vector2u(static_cast<uint32>(Math::abs(x)),
+                    static_cast<uint32>(Math::abs(y)));
   }
   
   //////////////////////
@@ -466,10 +467,11 @@ namespace nfEngineSDK
   {
     return this->x * other.x + this->y * other.y;
   }
-  uint32
+  int32
   Vector2u::cross(const Vector2u& other) const
   {
-    return this->x * other.y - this->y * other.x;
+    return static_cast<int32>(this->x * other.y) -
+           static_cast<int32>(this->y * other.x);
   }
 
   float
@@ -480,7 +482,7 @@ namespace nfEngineSDK
                     + static_cast<float>(d.y * d.y));
   }
   float
-  Vector2u::getMagnitud() const
+  Vector2u::getMagnitude() const
   {
     return Math::sqrt(static_cast<float>(this->x * this->x)
                     + static_cast<float>(this->y * this->y));

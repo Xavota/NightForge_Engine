@@ -4,12 +4,12 @@
 namespace nfEngineSDK
 {
   String
-  Vector4f::toString() const
+  Vector4f::toString(int decimals) const
   {
-    return "{ " + stringUtils::toString(x) + ", "
-                + stringUtils::toString(y) + ", "
-                + stringUtils::toString(z) + ", "
-                + stringUtils::toString(w) + " }";
+    return "{ " + stringUtils::toString(x, decimals) + ", "
+                + stringUtils::toString(y, decimals) + ", "
+                + stringUtils::toString(z, decimals) + ", "
+                + stringUtils::toString(w, decimals) + " }";
   }
 
   String

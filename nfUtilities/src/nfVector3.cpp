@@ -301,9 +301,9 @@ namespace nfEngineSDK
 
   Vector3f::operator Vector3u() const
   {
-    return Vector3u(static_cast<uint32>(x),
-                    static_cast<uint32>(y),
-                    static_cast<uint32>(z));
+    return Vector3u(static_cast<uint32>(Math::abs(x)),
+                    static_cast<uint32>(Math::abs(y)),
+                    static_cast<uint32>(Math::abs(z)));
   }
 
   //////////////////////
@@ -335,7 +335,7 @@ namespace nfEngineSDK
                     + static_cast<float>(d.z * d.z));
   }
   float
-  Vector3i::getMagnitud() const
+  Vector3i::getMagnitude() const
   {
     return Math::sqrt(static_cast<float>(this->x * this->x)
                     + static_cast<float>(this->y * this->y)
@@ -516,9 +516,9 @@ namespace nfEngineSDK
 
   Vector3i::operator Vector3u() const
   {
-    return Vector3u(static_cast<uint32>(x),
-                    static_cast<uint32>(y),
-                    static_cast<uint32>(z));
+    return Vector3u(static_cast<uint32>(Math::abs(x)),
+                    static_cast<uint32>(Math::abs(y)),
+                    static_cast<uint32>(Math::abs(z)));
   }
 
   //////////////////////
@@ -532,12 +532,12 @@ namespace nfEngineSDK
   {
     return this->x * other.x + this->y * other.y + this->z * other.z;
   }
-  Vector3u
+  Vector3i
   Vector3u::cross(const Vector3u& other) const
   {
-    Vector3u r(this->y * other.z - this->z * other.y,
-               this->z * other.x - this->x * other.z,
-               this->x * other.y - this->y * other.x);
+    Vector3i r(static_cast<int32>(this->y * other.z - this->z * other.y),
+               static_cast<int32>(this->z * other.x - this->x * other.z),
+               static_cast<int32>(this->x * other.y - this->y * other.x));
     return r;
   }
 
@@ -550,7 +550,7 @@ namespace nfEngineSDK
                     + static_cast<float>(d.z * d.z));
   }
   float
-  Vector3u::getMagnitud() const
+  Vector3u::getMagnitude() const
   {
     return Math::sqrt(static_cast<float>(this->x * this->x)
                     + static_cast<float>(this->y * this->y)

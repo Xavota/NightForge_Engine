@@ -631,8 +631,30 @@ namespace nfEngineSDK {
     bool
     operator!=(const Vector4f& other) const;
 
-    /// EXTERNALS
+    /// CASTS
 
+    /**
+     * @brief
+     * Overload of the cast to Vector4i.
+     *
+     * @description
+     * Creates a function for casting this vector to a Vector4i, rather implicit
+     * or explicitly.
+     */
+    operator Vector4i() const;
+    /**
+     * @brief
+     * Overload of the cast to Vector4u.
+     *
+     * @description
+     * Creates a function for casting this vector to a Vector4u, rather implicit
+     * or explicitly.
+     */
+    operator Vector4u() const;
+  
+  
+    /// EXTERNALS
+  
     /**
      * @brief
      * Returns a string of the vector.
@@ -640,11 +662,14 @@ namespace nfEngineSDK {
      * @description
      * Return a string with the format "{ x, y, z, w }".
      *
+     * @param decimals
+     * The amount of decimals for the numbers in the resulting string
+     *
      * @return
      * The string vector.
      */
     String
-    toString() const;
+    toString(int decimals = -1) const;
   
    public:
     /**
@@ -1254,6 +1279,27 @@ namespace nfEngineSDK {
     bool
     operator!=(const Vector4i& other) const;
 
+    /// CASTS
+
+    /**
+     * @brief
+     * Overload of the cast to Vector4f.
+     *
+     * @description
+     * Creates a function for casting this vector to a Vector4f, rather implicit
+     * or explicitly.
+     */
+    operator Vector4f() const;
+    /**
+     * @brief
+     * Overload of the cast to Vector4u.
+     *
+     * @description
+     * Creates a function for casting this vector to a Vector4u, rather implicit
+     * or explicitly.
+     */
+    operator Vector4u() const;
+
     /// EXTERNALS
 
     /**
@@ -1847,6 +1893,27 @@ namespace nfEngineSDK {
      */
     bool
     operator!=(const Vector4u& other) const;
+
+    /// CASTS
+
+    /**
+     * @brief
+     * Overload of the cast to Vector4f.
+     *
+     * @description
+     * Creates a function for casting this vector to a Vector4f, rather implicit
+     * or explicitly.
+     */
+    operator Vector4f() const;
+    /**
+     * @brief
+     * Overload of the cast to Vector4i.
+     *
+     * @description
+     * Creates a function for casting this vector to a Vector4i, rather implicit
+     * or explicitly.
+     */
+    operator Vector4i() const;
 
     /// EXTERNALS
 
