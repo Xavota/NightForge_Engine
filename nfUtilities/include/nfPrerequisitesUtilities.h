@@ -34,17 +34,20 @@ class ColorI;
 
 class Quaternion;
 
-class Matrix2f;
-class Matrix2i;
-class Matrix2u;
+class Matrix2;
+//class Matrix2f;
+//class Matrix2i;
+//class Matrix2u;
 
-class Matrix3f;
-class Matrix3i;
-class Matrix3u;
+class Matrix3;
+//class Matrix3f;
+//class Matrix3i;
+//class Matrix3u;
 
-class Matrix4f;
-class Matrix4i;
-class Matrix4u;
+class Matrix4;
+//class Matrix4f;
+//class Matrix4i;
+//class Matrix4u;
 
 struct SimplexVertex;
 struct ComplexVertex;

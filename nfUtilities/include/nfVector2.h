@@ -12,9 +12,12 @@
 
 #pragma once
 
-#define VECTOR2
-
 #include "nfPrerequisitesUtilities.h"
+
+#ifndef VECTOR2
+#define VECTOR2
+#endif // !VECTOR2
+
 
 namespace nfEngineSDK {
   /**
@@ -363,9 +366,11 @@ namespace nfEngineSDK {
     operator%(float other) const;
   
     /**
-     * @brief The sum of the vector plus a number.
+     * @brief
+     * The sum of the vector plus a number.
      *
-     * @description Returns a vector with the sum of every component of
+     * @description
+     * Returns a vector with the sum of every component of
      * the original plus the given number.
      *
      * @param other

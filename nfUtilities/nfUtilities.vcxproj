@@ -172,6 +172,7 @@
     <ClCompile Include="nfPlatformMathGeometry.cpp" />
     <ClCompile Include="nfVector2Externals.cpp" />
     <ClCompile Include="nfVector4Externals.cpp" />
+    <ClCompile Include="src\nfMatrix2.cpp" />
     <ClCompile Include="src\nfPlatformMath.cpp" />
     <ClCompile Include="src\nfPlatformMathIndependent.cpp" />
     <ClCompile Include="src\nfVector2.cpp" />
@@ -181,6 +182,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\nfMath.h" />
+    <ClInclude Include="include\nfMatrix2.h" />
     <ClInclude Include="include\nfPlatformDefines.h" />
     <ClInclude Include="include\nfPlatformMath.h" />
     <ClInclude Include="include\nfPlatformTypes.h" />

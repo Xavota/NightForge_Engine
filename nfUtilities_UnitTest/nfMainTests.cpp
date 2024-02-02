@@ -9,6 +9,8 @@
 #include <nfVector3.h>
 #include <nfVector4.h>
 
+#include <nfMatrix2.h>
+
 
 #include "nfMath.h"
 
@@ -25,6 +27,8 @@ using nfEngineSDK::Vector3u;
 using nfEngineSDK::Vector4f;
 using nfEngineSDK::Vector4i;
 using nfEngineSDK::Vector4u;
+
+using nfEngineSDK::Matrix2;
 
 TEST(nfUtilities, Basic_Type_Sizes)
 {
@@ -1082,8 +1086,8 @@ TEST(nfUtilities, Vector4i_Math) {
 
 
   /// Externals
-  EXPECT_TRUE(static_cast<Vector4f>(vt1) == Vector4i(-1.0f, 2.0f, 3.0f, 4.0f));
-  EXPECT_TRUE(static_cast<Vector4f>(vt2) == Vector4i(4.0f, -3.0f, 2.0f, 1.0f));
+  EXPECT_TRUE(static_cast<Vector4f>(vt1) == Vector4f(-1.0f, 2.0f, 3.0f, 4.0f));
+  EXPECT_TRUE(static_cast<Vector4f>(vt2) == Vector4f(4.0f, -3.0f, 2.0f, 1.0f));
 
   EXPECT_TRUE(static_cast<Vector4u>(vt1) == Vector4u(1u, 2u, 3u, 4u));
   EXPECT_TRUE(static_cast<Vector4u>(vt2) == Vector4u(4u, 3u, 2u, 1u));
@@ -1120,6 +1124,7 @@ TEST(nfUtilities, Vector4u_Math) {
   EXPECT_TRUE(vt2.z == 2u);
   EXPECT_TRUE(vt2.w == 1u);
 
+
   /// Const functions
   EXPECT_TRUE(ct1.dot(ct2) == 16u);
   EXPECT_TRUE(ct2.dot(ct1) == 16u);
@@ -1131,8 +1136,6 @@ TEST(nfUtilities, Vector4u_Math) {
   EXPECT_TRUE(Math::checkEqual(ct1.getMagnitude(), 4.12310562f));
   EXPECT_TRUE(Math::checkEqual(ct2.getMagnitude(), 5.19615242f));
 
-  //const Vector4u ct1 = Vector4u{ 2u, 3u, 2u, 0u };
-  //const Vector4u ct2 = Vector4u{ 1u, 4u, 1u, 3u };
   EXPECT_TRUE(ct1 + ct2 == Vector4u(3u, 7u, 3u, 3u));
   EXPECT_TRUE(ct1 - ct2 == Vector4u(1u, 4294967295u, 1u, 4294967293u));
   EXPECT_TRUE(ct1 * ct2 == Vector4u(2u, 12u, 2u, 0u));
@@ -1182,14 +1185,110 @@ TEST(nfUtilities, Vector4u_Math) {
 
 
   /// Externals
-  EXPECT_TRUE(static_cast<Vector4f>(vt1) == Vector4u(1.0f, 2.0f, 3.0f, 4.0f));
-  EXPECT_TRUE(static_cast<Vector4f>(vt2) == Vector4u(4.0f, 3.0f, 2.0f, 1.0f));
+  EXPECT_TRUE(static_cast<Vector4f>(vt1) == Vector4f(1.0f, 2.0f, 3.0f, 4.0f));
+  EXPECT_TRUE(static_cast<Vector4f>(vt2) == Vector4f(4.0f, 3.0f, 2.0f, 1.0f));
 
   EXPECT_TRUE(static_cast<Vector4i>(vt1) == Vector4i(1, 2, 3, 4));
   EXPECT_TRUE(static_cast<Vector4i>(vt2) == Vector4i(4, 3, 2, 1));
 
   EXPECT_EQ(vt1.toString(), "{ 1, 2, 3, 4 }");
   EXPECT_EQ(vt2.toString(), "{ 4, 3, 2, 1 }");
+}
+
+
+TEST(nfUtilities, Matrix2_Math) {
+  /// Constructors
+  const Matrix2 cm1 = Matrix2{  2.0f,  3.0f,
+                               -2.0f,  0.0f };
+  const Matrix2 cm2 = Matrix2{ Vector2f(-1.0f,  4.0f),
+                                Vector2f(1.0f, -3.0f) };
+
+  Matrix2 vm1 = Matrix2{  1.0f, -2.0f,
+                          4.0f,  3.0f };
+  Matrix2 vm2 = Matrix2{ Vector2f(3.0f,  4.0f),
+                         Vector2f(2.0f, -1.0f) };
+
+  EXPECT_TRUE(Math::checkEqual(cm1.m_00,  2.0f));
+  EXPECT_TRUE(Math::checkEqual(cm1.m_01,  3.0f));
+  EXPECT_TRUE(Math::checkEqual(cm1.m_10, -2.0f));
+  EXPECT_TRUE(Math::checkEqual(cm1.m_11,  0.0f));
+
+  EXPECT_TRUE(Math::checkEqual(cm2.m_00, -1.0f));
+  EXPECT_TRUE(Math::checkEqual(cm2.m_01,  4.0f));
+  EXPECT_TRUE(Math::checkEqual(cm2.m_10,  1.0f));
+  EXPECT_TRUE(Math::checkEqual(cm2.m_11, -3.0f));
+
+  EXPECT_TRUE(Math::checkEqual(vm1.m_00,  1.0f));
+  EXPECT_TRUE(Math::checkEqual(vm1.m_01, -2.0f));
+  EXPECT_TRUE(Math::checkEqual(vm1.m_10,  4.0f));
+  EXPECT_TRUE(Math::checkEqual(vm1.m_11,  3.0f));
+
+  EXPECT_TRUE(Math::checkEqual(vm2.m_00,  3.0f));
+  EXPECT_TRUE(Math::checkEqual(vm2.m_01,  4.0f));
+  EXPECT_TRUE(Math::checkEqual(vm2.m_10,  2.0f));
+  EXPECT_TRUE(Math::checkEqual(vm2.m_11, -1.0f));
+
+
+  /// Const functions
+  EXPECT_TRUE(Math::checkEqual(cm1.getDeterminant(), 6.0f));
+  EXPECT_TRUE(Math::checkEqual(cm2.getDeterminant(), -1.0f));
+
+  EXPECT_TRUE(cm1.getAdjoint() == Matrix2(0.0f, -3.0f, 2.0f, 2.0f));
+  EXPECT_TRUE(cm2.getAdjoint() == Matrix2(-3.0f, -4.0f, -1.0f, -1.0f));
+
+  EXPECT_TRUE(cm1.getTranspose() == Matrix2(2.0f, -2.0f, 3.0f, 0.0f));
+  EXPECT_TRUE(cm2.getTranspose() == Matrix2(-1.0f, 1.0f, 4.0f, -3.0f));
+
+  EXPECT_TRUE(cm1.getInverse() == Matrix2(0.0f, -0.5f, (1.0f / 3.0f), (1.0f / 3.0f)));
+  EXPECT_TRUE(cm2.getInverse() == Matrix2(3.0f, 4.0f, 1.0f, 1.0f));
+
+  EXPECT_TRUE(cm1 + cm2 == Matrix2( 1.0f,  7.0f, -1.0f, -3.0f));
+  EXPECT_TRUE(cm1 - cm2 == Matrix2( 3.0f, -1.0f, -3.0f,  3.0f));
+  EXPECT_TRUE(cm1 * cm2 == Matrix2( 1.0f, -1.0f,  2.0f, -8.0f));
+
+  EXPECT_TRUE(cm1 + 3.0f == Matrix2( 5.0f,  6.0f,  1.0f,  3.0f));
+  EXPECT_TRUE(cm1 - 3.0f == Matrix2(-1.0f,  0.0f, -5.0f, -3.0f));
+  EXPECT_TRUE(cm1 * 3.0f == Matrix2( 6.0f,  9.0f, -6.0f,  0.0f));
+
+  EXPECT_TRUE(3.0f + cm2 == Matrix2( 2.0f,  7.0f,  4.0f,  0.0f));
+  EXPECT_TRUE(3.0f - cm2 == Matrix2( 4.0f, -1.0f,  2.0f,  6.0f));
+  EXPECT_TRUE(3.0f * cm2 == Matrix2(-3.0f, 12.0f,  3.0f, -9.0f));
+
+
+  /// Set functions
+  vm1 = vm2;
+  EXPECT_TRUE(vm1 == vm2);
+
+  vm1 = Matrix2{  1.0f, -2.0f,
+                  4.0f,  3.0f };
+  vm2 = Matrix2{  3.0f,  4.0f,
+                  2.0f, -1.0f };
+
+  EXPECT_TRUE(vm1.transpose() == Matrix2( 1.0f,  4.0f, -2.0f,  3.0f));
+  EXPECT_TRUE(vm2.transpose() == Matrix2( 3.0f,  2.0f,  4.0f, -1.0f));
+
+  EXPECT_TRUE(vm1.inverse() == Matrix2( 3.0f,  -4.0f, 2.0f,  1.0f) * (1.0f / 11.0f));
+  EXPECT_TRUE(vm2.inverse() == Matrix2( 1.0f,  2.0f,  4.0f, -3.0f) * (1.0f / 11.0f));
+
+  vm1 = Matrix2{  1.0f, -2.0f,
+                  4.0f,  3.0f };
+  vm2 = Matrix2{  3.0f,  4.0f,
+                  2.0f, -1.0f };
+  vm1 += vm2;
+  EXPECT_TRUE(vm1 == Matrix2( 4.0f,  2.0f,  6.0f,  2.0f));
+  vm1 -= vm2;
+  EXPECT_TRUE(vm1 == Matrix2( 1.0f, -2.0f,  4.0f,  3.0f));
+  vm1 *= vm2;
+  EXPECT_TRUE(vm1 == Matrix2(-1.0f,  6.0f, 18.0f, 13.0f));
+
+  vm2 += 2.0f;
+  EXPECT_TRUE(vm2 == Matrix2(5.0f, 6.0f, 4.0f, 1.0f));
+  vm2 -= 2.0f;
+  EXPECT_TRUE(vm2 == Matrix2(3.0f, 4.0f, 2.0f, -1.0f));
+  vm2 *= 2.0f;
+  EXPECT_TRUE(vm2 == Matrix2(6.0f, 8.0f, 4.0f, -2.0f));
+
+  EXPECT_TRUE(vm2 != Matrix2(3.0f, 4.0f, 2.0f, -1.0f));
 }
 
 int main(int argc, char** argv) {
